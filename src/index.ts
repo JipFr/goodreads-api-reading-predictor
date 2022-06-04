@@ -67,7 +67,7 @@ import GoodReads from "./goodreads";
 			}
 
 			// Log each update
-			for (const update of updates.slice(0, 3)) {
+			for (const update of updates.slice(0, 5)) {
 				// Create progress bar
 				const block = "█";
 				const totalBlockCount = 35;
