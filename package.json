@@ -6,6 +6,7 @@
   "types": "dist/goodreads/index.d.ts",
   "scripts": {
     "start": "etsc && node dist",
+    "predictor": "etsc && node dist/predictor",
     "build": "tsc",
     "prepublish": "npm run build"
   },
