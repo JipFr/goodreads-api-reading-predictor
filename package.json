@@ -1,0 +1,21 @@
+{
+  "name": "frc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "etsc && node dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "dayjs": "^1.11.2",
+    "dotenv": "^16.0.1",
+    "esbuild": "^0.14.42",
+    "esbuild-node-tsc": "^1.8.5",
+    "node-fetch": "^2.6.6",
+    "xml2js": "^0.4.23"
+  }
+}
