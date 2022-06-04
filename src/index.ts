@@ -24,7 +24,7 @@ import GoodReads from "./goodreads";
 		console.log(currentUser);
 
 		const readingShelf = await gr.getShelf(
-			gr.user.user.id,
+			gr?.user?.user.id,
 			"currently-reading"
 		);
 		const booksOnShelf = readingShelf.reviews.review;

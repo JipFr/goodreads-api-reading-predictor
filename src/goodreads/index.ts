@@ -5,7 +5,7 @@ import { parseString } from "xml2js";
 import { getAmazonAuthCookies } from "./amazonAuth";
 import { GoodReadsUserRes, Tokens } from "./types";
 
-class GoodReads {
+export default class GoodReads {
 	tokens?: Tokens;
 	user?: GoodReadsUserRes;
 	endpoints: {
@@ -14,7 +14,6 @@ class GoodReads {
 	};
 
 	constructor() {
-		this.tokens = null;
 		this.endpoints = {
 			current_user_shelves: "api/current_user_shelves?_nc=true&format=xml",
 			current_user_data:
@@ -29,19 +28,22 @@ class GoodReads {
 	}
 
 	async get(url: string) {
-		const req = await fetch(`https://www.goodreads.com/${url}`, {
-			headers: {
-				Accept: "*/*",
-				X_apple_app_version: "800",
-				X_apple_device_model: "iPhone",
-				X_apple_system_version: "15.6",
-				"X-Amz-Access-Token": this.tokens.access_token,
-			},
-		});
-		const body = await req.text();
-		return (await body.startsWith("<"))
-			? (await convertXml(body)).GoodreadsResponse
-			: body;
+		if (this.tokens?.access_token) {
+			const req = await fetch(`https://www.goodreads.com/${url}`, {
+				headers: {
+					Accept: "*/*",
+					X_apple_app_version: "800",
+					X_apple_device_model: "iPhone",
+					X_apple_system_version: "15.6",
+					"X-Amz-Access-Token": this.tokens.access_token,
+				},
+			});
+			const body = await req.text();
+			return (await body.startsWith("<"))
+				? (await convertXml(body)).GoodreadsResponse
+				: body;
+		}
+		throw new Error("NO_ACCESS_TOKEN");
 	}
 
 	async updateUser() {
@@ -64,7 +66,7 @@ class GoodReads {
 }
 
 export async function convertXml(xml: string): Promise<any> {
-	const parsed = await new Promise((resolve, reject) => {
+	const parsed: any = await new Promise((resolve, reject) => {
 		return parseString(xml, { explicitArray: false }, (err, result) => {
 			if (err) reject(err);
 			resolve(result);
@@ -99,5 +101,3 @@ function convertResJson(data: { [key: string]: any }): any {
 
 	return data;
 }
-
-export default GoodReads;

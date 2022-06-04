@@ -1,10 +1,13 @@
 {
-  "name": "frc",
-  "version": "1.0.0",
+  "name": "gr-api",
+  "version": "1.0.4",
   "description": "",
-  "main": "index.js",
+  "main": "dist/goodreads/index.js",
+  "types": "dist/goodreads/index.d.ts",
   "scripts": {
-    "start": "etsc && node dist"
+    "start": "etsc && node dist",
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +20,9 @@
     "esbuild-node-tsc": "^1.8.5",
     "node-fetch": "^2.6.6",
     "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.1",
+    "@types/xml2js": "^0.4.11"
   }
 }
