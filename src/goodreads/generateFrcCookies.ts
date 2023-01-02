@@ -1,3 +1,8 @@
+// Coming back to this 7 months later, I was confused where a lot of this must've code from
+// I did some searching online and I think it must be https://github.com/athrowaway2021/amazon_auth/blob/c39339ed4711c1ee51346ba285fb9b76c7f98b9e/amazon_auth.py,
+// It seems likely considering they're doing the exact same thing.
+// I don't remember converting this at all, but oh well; who cares. It's there.
+
 import * as crypto from "crypto";
 import * as os from "os";
 import { gzip } from "zlib";
