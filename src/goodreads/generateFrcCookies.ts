@@ -1,6 +1,5 @@
 import * as crypto from "crypto";
 import * as os from "os";
-import * as tls from "tls";
 import { gzip } from "zlib";
 
 const APP_NAME = "GoodreadsForIOS App";
