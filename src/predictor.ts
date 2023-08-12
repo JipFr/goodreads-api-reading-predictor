@@ -27,7 +27,9 @@ import GoodReads from "./goodreads";
 			gr?.user?.user.id,
 			"currently-reading"
 		);
-		const booksOnShelf = readingShelf.reviews.review;
+		let booksOnShelf = readingShelf.reviews.review;
+		if (!Array.isArray(booksOnShelf)) booksOnShelf = [booksOnShelf];
+
 		console.log(JSON.stringify(booksOnShelf, null, "  "));
 
 		console.log("┌" + "─".repeat(38) + "┐", "\n");
