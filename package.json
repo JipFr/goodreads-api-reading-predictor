@@ -7,6 +7,7 @@
   "scripts": {
     "start": "etsc && node dist",
     "predictor": "etsc && node dist/predictor",
+    "read": "etsc && node dist/read",
     "build": "tsc",
     "prepublish": "npm run build"
   },

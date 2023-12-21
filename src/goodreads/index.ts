@@ -57,11 +57,33 @@ export default class GoodReads {
 		userId = this.user?.user.id,
 		shelfName: string,
 		page = 0,
+		perPage = 100
+	) {
+		// Get full shelf;
+		let total = Infinity;
+		let reviews: any[] = [];
+		let shelfData: any = {};
+		while (reviews.length < total) {
+			const res = await this.getShelfPage(userId, shelfName, page, perPage);
+			shelfData = res;
+			total = res?.reviews?.$?.total || 0;
+			reviews = reviews.concat(res?.reviews?.review || []);
+			page++;
+		}
+		return {
+			...shelfData,
+			reviews: Array.isArray(reviews) ? reviews : [reviews],
+		};
+	}
+
+	getShelfPage(
+		userId = this.user?.user.id,
+		shelfName: string,
+		page = 0,
 		perPage = 10
 	) {
 		const url = `review/list/${userId}?_nc=true&format=xml&order=d&page=${page}&per_page=${perPage}&shelf=${shelfName}&show_user_statuses=true&sort=position&v=2`;
-		const res = await this.get(url);
-		return res;
+		return this.get(url);
 	}
 }
 

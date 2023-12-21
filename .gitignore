@@ -2,3 +2,6 @@
 .env
 node_modules/
 dist/
+
+goodreads-read.json
+.DS-Store
